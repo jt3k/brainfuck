@@ -7,7 +7,8 @@ You can look in [test.js](./test.js) and [index.js](./index.js) to view in detai
 ## To run this example u can:
 
 1. Install nodejs
-2. run `$ npx jt3k/brainfuck '<brainfuck code here>'`
+2. run `$ npx -q jt3k/brainfuck '<brainfuck code here>'`
+   ![terminal with command result](https://i.imgur.com/1x2O5fM.png)
 
 <details>
 	<summary>
@@ -50,8 +51,10 @@ You can look in [test.js](./test.js) and [index.js](./index.js) to view in detai
 ## Tests
 
 ```js
-	npm test
+npm test
 ```
+
+![terminal with command result](https://i.imgur.com/tdelaY5.png)
 
 ## Known issues
 
