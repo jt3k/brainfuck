@@ -1,13 +1,17 @@
 {
-  "name": "brainfuck-ast",
+  "name": "brainfuck",
   "version": "1.0.0",
-  "description": "",
+  "description": "simple brainfuck language compiler",
   "main": "index.js",
   "scripts": {
-    "test": "ava"
+    "test": "ava -v"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Andrey Gurtovoy",
+    "email": "iyntx@ya.ru",
+    "url": "github.com/jt3k"
+  },
   "license": "MIT",
   "devDependencies": {
     "ava": "^0.25.0"
