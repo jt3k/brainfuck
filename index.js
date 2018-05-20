@@ -40,15 +40,9 @@ module.exports = input => {
 				}
 				break;
 
-			case ']': {
-				if (cells[pointer] === 0) {
-					loops.pop();
-				} else {
-					const curLoop = loops[loops.length - 1];
-					current = curLoop;
-				}
+			case ']':
+				current = loops.pop() - 1;
 				break;
-			}
 
 			case '>':
 				pointer++;
