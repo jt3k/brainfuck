@@ -1,11 +1,11 @@
 module.exports = input => {
-	let preventInviniteLoop = 1e7;
-	while (--preventInviniteLoop && current < input.length) {
 	const cells = new Array(9999).fill(0);
 	let pointer = 0; // Указатель на ячейку памяти
 	let current = 0; // Текущий шаг
 	const loops = []; // Возвраты для циклов
 	const output = []; // Буфер вывода
+	let preventInfiniteLoop = 1e7;
+	while (--preventInfiniteLoop && current < input.length) {
 		const ch = input.charAt(current);
 		switch (ch) {
 			case '+':
@@ -66,7 +66,7 @@ module.exports = input => {
 		current++;
 	}
 
-	if (preventInviniteLoop === 0) {
+	if (preventInfiniteLoop === 0) {
 		throw new Error('infinite loop prevented');
 	}
 
