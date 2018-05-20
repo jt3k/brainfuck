@@ -4,7 +4,7 @@
   "description": "simple brainfuck language compiler",
   "main": "index.js",
   "scripts": {
-    "test": "ava -v"
+    "test": "xo && ava -v"
   },
   "bin": "cli.js",
   "keywords": [],
@@ -15,6 +15,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.25.0"
+    "ava": "^0.25.0",
+    "xo": "^0.21.1"
   }
 }

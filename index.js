@@ -1,12 +1,12 @@
 module.exports = input => {
-	const cells = new Array(10).fill(0);
-	let pointer = 0; // указатель на ячейку памяти
-	let current = 0; // текущий шаг
-	const loops = []; // возвраты для циклов
-	const output = []; // буфер вывода
 	let preventInviniteLoop = 1e7;
 	while (--preventInviniteLoop && current < input.length) {
-		let ch = input.charAt(current);
+	const cells = new Array(9999).fill(0);
+	let pointer = 0; // Указатель на ячейку памяти
+	let current = 0; // Текущий шаг
+	const loops = []; // Возвраты для циклов
+	const output = []; // Буфер вывода
+		const ch = input.charAt(current);
 		switch (ch) {
 			case '+':
 				if (cells[pointer] === 255) {
@@ -30,24 +30,9 @@ module.exports = input => {
 
 			case '[':
 				if (cells[pointer] === 0) {
-					// find matching pair for bracket
-					let bracketsBuf = 0;
-					while (current < input.length) {
-						ch = input.charAt(current);
+					current = findMatchingParen(current, input);
 
-						if (ch === '[') {
-							bracketsBuf++;
-						}
-						if (ch === ']') {
-							bracketsBuf--;
-						}
-						if (bracketsBuf === 0) {
-							break;
-						}
-						current++;
-					}
-
-					if (bracketsBuf !== 0) {
+					if (current === input.length) {
 						throw new SyntaxError('can not find matching pair for bracket');
 					}
 				} else {
@@ -56,11 +41,11 @@ module.exports = input => {
 				break;
 
 			case ']': {
-				if (cells[pointer] !== 0) {
+				if (cells[pointer] === 0) {
+					loops.pop();
+				} else {
 					const curLoop = loops[loops.length - 1];
 					current = curLoop;
-				} else {
-					loops.pop();
 				}
 				break;
 			}
@@ -75,12 +60,34 @@ module.exports = input => {
 				}
 				pointer--;
 				break;
+			default:
 		}
+
 		current++;
 	}
 
 	if (preventInviniteLoop === 0) {
 		throw new Error('infinite loop prevented');
+	}
+
+	function findMatchingParen(current, input) {
+		// Find matching pair for bracket
+		let bracketsBuf = 0;
+		while (current < input.length) {
+			const ch = input.charAt(current);
+
+			if (ch === '[') {
+				bracketsBuf++;
+			}
+			if (ch === ']') {
+				bracketsBuf--;
+			}
+			if (bracketsBuf === 0) {
+				break;
+			}
+			current++;
+		}
+		return current;
 	}
 
 	return output.map(charCode => String.fromCharCode(charCode)).join('');

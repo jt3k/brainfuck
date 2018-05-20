@@ -1,5 +1,5 @@
 import test from 'ava';
-import index from './index';
+import index from '.';
 
 test('should return the chars', t => {
 	t.is(index('++++++++++ ++++++++++ ++++++++++ +++.'), '!');
@@ -40,7 +40,13 @@ test('should throw an SyntaxError if open bracket not have close pair', t => {
 });
 
 test('should be able to write and read from different cells', t => {
-	t.is(index('+'.repeat(44) + '.' + '>' + '+'.repeat(33) + '.'), ',!');
+	const result = index('.>+.>++.');
+	const charcode0 = result.charCodeAt(0);
+	const charcode1 = result.charCodeAt(1);
+	const charcode2 = result.charCodeAt(2);
+	t.is(charcode0, 0);
+	t.is(charcode1, 1);
+	t.is(charcode2, 2);
 });
 
 test('should be able to 256 === 0', t => {
@@ -51,4 +57,4 @@ test('should be able to -1 === 255', t => {
 	t.is(index('-.').charCodeAt(0), 255);
 });
 
-// test('should return empty if program empty', t => {});
+// Test('should return empty if program empty', t => {});
